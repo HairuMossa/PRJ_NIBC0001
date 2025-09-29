@@ -14,21 +14,21 @@ void pid_controller_init(pid_parameters_t* pid) {
 float pid_controller_update(pid_parameters_t* pid, float setpoint, float measurement, float dt) {
     float error = setpoint - measurement;
     
-    // Proportional term
+    //! Proportional term
     float proportional = pid->kp * error;
     
-    // Integral term
+    //! Integral term
     pid->integral += error * dt;
     float integral = pid->ki * pid->integral;
     
-    // Derivative term
+    //! Derivative term
     float derivative = pid->kd * (error - pid->prev_error) / dt;
     pid->prev_error = error;
     
-    // Calculate output
+    //! Calculate output
     float output = proportional + integral + derivative;
     
-    // Clamp output.
+    //! Clamp output.
     if (output > pid->output_max) output = pid->output_max;
     if (output < pid->output_min) output = pid->output_min;
     

@@ -1,14 +1,14 @@
 #include "if_timer.h"
 #include "stm32f1xx_hal.h"
 
-extern TIM_HandleTypeDef htim2;  // Control loop timer (10 kHz)
-extern TIM_HandleTypeDef htim3;  // Telemetry timer (10 Hz)
+extern TIM_HandleTypeDef htim2;  //! Control loop timer (10 kHz)
+extern TIM_HandleTypeDef htim3;  //! Telemetry timer (10 Hz)
 
 static volatile bool control_flag = false;
 static volatile bool telemetry_flag = false;
 
 void if_timer_init(void) {
-    // Configuration done by CubeMX
+    //! Configuration done by CubeMX
 }
 
 void if_timer_start(void) {
@@ -33,12 +33,12 @@ void if_timer_clear_control_flag(void) {
     control_flag = false;
 }
 
-// Timer interrupt callbacks
+//! Timer interrupt callbacks
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
     if (htim->Instance == TIM2) {
-        control_flag = true;  // 10 kHz control loop
+        control_flag = true;  //! 10 kHz control loop
     }
     else if (htim->Instance == TIM3) {
-        telemetry_flag = true;  // 10 Hz telemetry
+        telemetry_flag = true;  //! 10 Hz telemetry
     }
 }
