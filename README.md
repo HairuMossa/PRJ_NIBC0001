@@ -1,4 +1,4 @@
-# PRJ_NIBC0001 – Non Isolated Buck Converter Embedded Sofware
+# PRJ_NIBC0001 – Non Isolated Buck Converter Embedded Software
 
 I decided to use **layered software architecture** to abstruct the hardware from the software. 
 
